@@ -5,8 +5,16 @@
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_3mqji")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="LabelEmotiBit" type="RichTextLabel" parent="."]
 offset_left = 100.0
 offset_top = 100.0
 offset_right = 356.0
 offset_bottom = 356.0
+text = "- - -"
+
+[node name="LabelNoiseSensor" type="RichTextLabel" parent="."]
+offset_left = 533.0
+offset_top = 100.0
+offset_right = 789.0
+offset_bottom = 356.0
+text = "- - -"

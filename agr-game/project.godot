@@ -14,3 +14,8 @@ config/name="AGR Game"
 run/main_scene="uid://7f5yd0hq0nmn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+EmotiBitBridge="*res://GlobalScripts/EmotiBitBridge.gd"
+NoiseSensorBridge="*res://GlobalScripts/NoiseSensorBridge.tscn"
