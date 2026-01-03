@@ -1,0 +1,143 @@
+[gd_scene load_steps=15 format=3 uid="uid://cqvil45w4mhkd"]
+
+[ext_resource type="Script" uid="uid://n2lfkf0w56un" path="res://Scenes/intro_scene.gd" id="1_xmxck"]
+[ext_resource type="Shader" uid="uid://b6snfuaqc0q2x" path="res://Assets/Shaders/Cloth.gdshader" id="2_d4qc4"]
+[ext_resource type="Texture2D" uid="uid://bg7jen6mk8ahg" path="res://Assets/Images/GiantDeformedBubble.png" id="3_pseuf"]
+[ext_resource type="PackedScene" uid="uid://6ldjf7sabaes" path="res://Artefacts/background_animation.tscn" id="4_2liv2"]
+[ext_resource type="Texture2D" uid="uid://bk2ky8u2g1hck" path="res://Assets/Images/Logo.png" id="4_pseuf"]
+[ext_resource type="FontFile" uid="uid://id8tb8prkncw" path="res://Assets/Fonts/Manrope-Light.ttf" id="11_st0op"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h8frj"]
+shader = ExtResource("2_d4qc4")
+shader_parameter/time_factor = 2.0
+shader_parameter/amplitude = Vector2(10, 10)
+shader_parameter/enable = true
+
+[sub_resource type="Animation" id="Animation_2liv2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_h8frj"]
+resource_name = "rotation"
+length = 40.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 40),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.30064]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ge4sb"]
+_data = {
+&"RESET": SubResource("Animation_2liv2"),
+&"rotation": SubResource("Animation_h8frj")
+}
+
+[sub_resource type="Animation" id="Animation_ifd6s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_wma8j"]
+resource_name = "ShowLogo"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.03333, 1.50214, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1.1, 1.1), Vector2(0.9, 0.9), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mdgw6"]
+_data = {
+&"RESET": SubResource("Animation_ifd6s"),
+&"ShowLogo": SubResource("Animation_wma8j")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sa2gf"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="IntroScene" type="Node2D"]
+script = ExtResource("1_xmxck")
+
+[node name="GiantDeformedBubble" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_h8frj")
+position = Vector2(949, 507)
+texture = ExtResource("3_pseuf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GiantDeformedBubble"]
+libraries = {
+&"": SubResource("AnimationLibrary_ge4sb")
+}
+autoplay = "rotation"
+
+[node name="BackgroundAnimation" parent="." instance=ExtResource("4_2liv2")]
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(947, 522)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("4_pseuf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Logo"]
+libraries = {
+&"": SubResource("AnimationLibrary_mdgw6")
+}
+autoplay = "ShowLogo"
+
+[node name="ButtonNextScene" type="Button" parent="."]
+offset_left = 767.0
+offset_top = 865.0
+offset_right = 1133.0
+offset_bottom = 910.0
+pivot_offset = Vector2(184, 23)
+mouse_default_cursor_shape = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("11_st0op")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxFlat_sa2gf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_sa2gf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sa2gf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sa2gf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sa2gf")
+text = "CONTINUE ->"
+
+[connection signal="button_up" from="ButtonNextScene" to="." method="_on_button_button_up"]
+[connection signal="mouse_entered" from="ButtonNextScene" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="ButtonNextScene" to="." method="_on_button_mouse_exited"]

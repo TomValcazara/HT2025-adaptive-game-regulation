@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://ub0am1uph0km"]
+
+[ext_resource type="Shader" uid="uid://b6snfuaqc0q2x" path="res://Assets/Shaders/Cloth.gdshader" id="1_ex5wc"]
+[ext_resource type="Texture2D" uid="uid://c8wg2vmqj1si" path="res://Assets/Images/BubbleBlue.png" id="1_rakhg"]
+[ext_resource type="Script" uid="uid://d3v6pyglkh65c" path="res://Artefacts/button_option.gd" id="3_1sfys"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1sfys"]
+shader = ExtResource("1_ex5wc")
+shader_parameter/time_factor = 4.0
+shader_parameter/amplitude = Vector2(4, 2)
+shader_parameter/enable = true
+
+[node name="ButtonOption" type="TextureButton"]
+material = SubResource("ShaderMaterial_1sfys")
+scale = Vector2(0.7, 0.7)
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("1_rakhg")
+script = ExtResource("3_1sfys")

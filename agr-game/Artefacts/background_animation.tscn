@@ -1,0 +1,204 @@
+[gd_scene load_steps=10 format=3 uid="uid://6ldjf7sabaes"]
+
+[ext_resource type="Texture2D" uid="uid://c8wg2vmqj1si" path="res://Assets/Images/BubbleBlue.png" id="1_823vu"]
+[ext_resource type="Texture2D" uid="uid://c4ijuh2s1kra6" path="res://Assets/Images/BubbleGreen.png" id="2_cq58w"]
+[ext_resource type="Texture2D" uid="uid://dptn7g3d26vw4" path="res://Assets/Images/BubbleOrange.png" id="3_7gvgl"]
+[ext_resource type="Texture2D" uid="uid://dt8m8mw0qfbsa" path="res://Assets/Images/BubblePink.png" id="4_gevad"]
+[ext_resource type="Texture2D" uid="uid://qxm5rkmsgyor" path="res://Assets/Images/BubblePurple.png" id="5_jki66"]
+[ext_resource type="Texture2D" uid="uid://d2yy2tbqgest1" path="res://Assets/Images/BubbleRed.png" id="6_qvg60"]
+
+[sub_resource type="Animation" id="Animation_id6s3"]
+resource_name = "MoveBubbles"
+length = 16.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleBlue:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.27858, 4.03245),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(440, 2160), Vector2(229, 859), Vector2(524, -253)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BubbleGreen:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.77034, 4.19637, 6.58961),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(807, 1510), Vector2(807, 1510), Vector2(1174, 832), Vector2(1006, -271)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BubbleOrange:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4.26194, 7.31086, 10.2287),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1191, 1955), Vector2(1191, 1955), Vector2(1433, 1027), Vector2(1372, -224)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BubblePink:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 7.34365, 10.3926, 12.753),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1530, 1404), Vector2(1530, 1404), Vector2(1873, 516), Vector2(1530, -231)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BubblePurple:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.0666667, 3.33333, 7, 9.83333, 14.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1715, 1517), Vector2(1715, 1517), Vector2(1715, 1517), Vector2(589, 932), Vector2(966, -185)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BubbleRed:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0333333, 4.63333, 10.0333, 12.6686, 14.3406, 15.9667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-455, 1475), Vector2(273, 1493), Vector2(2192, 306), Vector2(983, -316), Vector2(-379, 532), Vector2(-455, 1475)]
+}
+
+[sub_resource type="Animation" id="Animation_spbar"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleBlue:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(440, 2160)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BubbleGreen:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(807, 1510)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BubbleOrange:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1191, 1955)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BubblePink:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1530, 1404)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BubblePurple:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1941, 1988)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BubbleRed:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(273, 1493)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8r6f4"]
+_data = {
+&"MoveBubbles": SubResource("Animation_id6s3"),
+&"RESET": SubResource("Animation_spbar")
+}
+
+[node name="BackgroundAnimation" type="Node2D"]
+modulate = Color(1, 1, 1, 0.392157)
+
+[node name="BubbleBlue" type="Sprite2D" parent="."]
+position = Vector2(440, 2160)
+texture = ExtResource("1_823vu")
+
+[node name="BubbleGreen" type="Sprite2D" parent="."]
+position = Vector2(807, 1510)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("2_cq58w")
+
+[node name="BubbleOrange" type="Sprite2D" parent="."]
+position = Vector2(1191, 1955)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_7gvgl")
+
+[node name="BubblePink" type="Sprite2D" parent="."]
+position = Vector2(1530, 1404)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_gevad")
+
+[node name="BubblePurple" type="Sprite2D" parent="."]
+position = Vector2(1698.31, 1478.77)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_jki66")
+
+[node name="BubbleRed" type="Sprite2D" parent="."]
+position = Vector2(-455.034, 1475.19)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_qvg60")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8r6f4")
+}
+autoplay = "MoveBubbles"

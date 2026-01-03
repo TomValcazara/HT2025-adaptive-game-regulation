@@ -1,0 +1,103 @@
+[gd_scene load_steps=12 format=3 uid="uid://br8ixsj7ynv7d"]
+
+[ext_resource type="Script" uid="uid://mmfxnw2xxla3" path="res://Scenes/profile_selector_scene.gd" id="1_tea4j"]
+[ext_resource type="PackedScene" uid="uid://6ldjf7sabaes" path="res://Artefacts/background_animation.tscn" id="2_tea4j"]
+[ext_resource type="Texture2D" uid="uid://bk2ky8u2g1hck" path="res://Assets/Images/Logo.png" id="4_pseuf"]
+[ext_resource type="FontFile" uid="uid://4560b4e7q4th" path="res://Assets/Fonts/Manrope-ExtraBold.ttf" id="8_65qho"]
+[ext_resource type="Texture2D" uid="uid://sdmovlnak8uj" path="res://Assets/Images/RoomNoiseLabelBlue.png" id="10_lyqtx"]
+[ext_resource type="FontFile" uid="uid://id8tb8prkncw" path="res://Assets/Fonts/Manrope-Light.ttf" id="11_awes4"]
+[ext_resource type="Texture2D" uid="uid://drj2xisspxk66" path="res://Assets/Images/IconAudio.png" id="11_oaixs"]
+[ext_resource type="Texture2D" uid="uid://c50ba1l7hx0s0" path="res://Assets/Images/ProfileNew.png" id="12_6ws05"]
+[ext_resource type="Texture2D" uid="uid://b6sqnuojbian1" path="res://Assets/Images/ButtonLargeHover.png" id="12_awes4"]
+[ext_resource type="Texture2D" uid="uid://cerpegkdqrakh" path="res://Assets/Images/ButtonLargeDisabled.png" id="13_6ws05"]
+[ext_resource type="Texture2D" uid="uid://cdobi8n4q7kn2" path="res://Assets/Images/ButtonLarge.png" id="14_a0cqm"]
+
+[node name="ProfileSelectorScene" type="Node2D"]
+script = ExtResource("1_tea4j")
+
+[node name="BackgroundAnimation" parent="." instance=ExtResource("2_tea4j")]
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(156, 118)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_pseuf")
+
+[node name="LabelTitle" type="Label" parent="."]
+offset_left = 299.0
+offset_top = 128.0
+offset_right = 537.0
+offset_bottom = 169.0
+theme_override_colors/font_color = Color(0.147672, 0.147672, 0.147672, 1)
+theme_override_fonts/font = ExtResource("8_65qho")
+theme_override_font_sizes/font_size = 30
+text = "SELECT PROFILE"
+
+[node name="ProfileList" type="HBoxContainer" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = 338.0
+offset_right = 1923.0
+offset_bottom = 660.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="NewProfile" type="VBoxContainer" parent="ProfileList"]
+layout_mode = 2
+
+[node name="NewProfileImage" type="TextureRect" parent="ProfileList/NewProfile"]
+layout_mode = 2
+texture = ExtResource("12_6ws05")
+
+[node name="ButtonCreate" type="TextureButton" parent="ProfileList/NewProfile"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("14_a0cqm")
+texture_hover = ExtResource("12_awes4")
+texture_disabled = ExtResource("13_6ws05")
+
+[node name="Label" type="Label" parent="ProfileList/NewProfile/ButtonCreate"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_fonts/font = ExtResource("11_awes4")
+theme_override_font_sizes/font_size = 22
+text = "CREATE PROFILE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStatus" type="Sprite2D" parent="."]
+position = Vector2(963, 765)
+texture = ExtResource("10_lyqtx")
+
+[node name="Label" type="Label" parent="AudioStatus"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -190.0
+offset_top = -51.0
+offset_right = -316.0
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_fonts/font = ExtResource("11_awes4")
+theme_override_font_sizes/font_size = 32
+text = "- - -"
+vertical_alignment = 1
+
+[node name="IconAudio" type="Sprite2D" parent="AudioStatus"]
+position = Vector2(-246, -2)
+texture = ExtResource("11_oaixs")
+
+[node name="Timer" type="Timer" parent="AudioStatus"]
+
+[connection signal="button_up" from="ProfileList/NewProfile/ButtonCreate" to="." method="_on_button_create_button_up"]

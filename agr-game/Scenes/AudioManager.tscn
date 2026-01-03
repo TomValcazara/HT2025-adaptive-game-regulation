@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://doyin5pugohmg"]
+
+[ext_resource type="Script" uid="uid://b4uwq4y35l034" path="res://Scenes/audio_manager.gd" id="1_dygvs"]
+[ext_resource type="AudioStream" uid="uid://cgundmukbcobt" path="res://Assets/Audio/Starlight_Drifter.wav" id="2_i2xd5"]
+[ext_resource type="AudioStream" uid="uid://5qt3ke8ia7oy" path="res://Assets/Audio/SFX_Pop_Designed_Mouth_High_1.wav" id="3_u6owb"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_dygvs")
+
+[node name="MusicPlay" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_i2xd5")
+autoplay = true
+bus = &"Music"
+
+[node name="GamePlayAudios" type="AudioStreamPlayer" parent="."]
+bus = &"GamePlay"
+
+[node name="BubbleFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_u6owb")
+bus = &"FX"

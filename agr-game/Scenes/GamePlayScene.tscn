@@ -1,0 +1,125 @@
+[gd_scene load_steps=9 format=3 uid="uid://d3mfrgadlv6g1"]
+
+[ext_resource type="Script" uid="uid://cupqq23prpwye" path="res://Scenes/game_play_scene.gd" id="1_6l521"]
+[ext_resource type="PackedScene" uid="uid://6ldjf7sabaes" path="res://Artefacts/background_animation.tscn" id="2_ugtlh"]
+[ext_resource type="Texture2D" uid="uid://b3n7e0fwsqm5m" path="res://Assets/Images/hud_time.png" id="4_rynbw"]
+[ext_resource type="FontFile" uid="uid://c7y6i6awjx18a" path="res://Assets/Fonts/Manrope-Regular.ttf" id="5_ki4xb"]
+[ext_resource type="Texture2D" uid="uid://04emcrc0dx5i" path="res://Assets/Images/hud_correct.png" id="6_1bwwf"]
+[ext_resource type="Texture2D" uid="uid://cuw0qybq3dqtp" path="res://Assets/Images/hud_wrong.png" id="7_igojf"]
+[ext_resource type="FontFile" uid="uid://4560b4e7q4th" path="res://Assets/Fonts/Manrope-ExtraBold.ttf" id="8_65qho"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hlt74"]
+bg_color = Color(0.0941176, 0.223529, 0.392157, 0.235294)
+
+[node name="GamePlayScene" type="Node2D"]
+script = ExtResource("1_6l521")
+
+[node name="BackgroundAnimation" parent="." instance=ExtResource("2_ugtlh")]
+
+[node name="Instruction" type="RichTextLabel" parent="."]
+offset_top = 200.0
+offset_right = 1920.0
+offset_bottom = 300.0
+theme_override_colors/default_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_fonts/normal_font = ExtResource("8_65qho")
+theme_override_font_sizes/normal_font_size = 42
+bbcode_enabled = true
+text = "- - -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Options" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HUD" type="Panel" parent="."]
+offset_right = 1920.0
+offset_bottom = 160.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hlt74")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="HudTime" type="TextureRect" parent="HUD/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("4_rynbw")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="HUD/HBoxContainer/HudTime"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 97.0
+offset_top = 16.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_fonts/font = ExtResource("5_ki4xb")
+theme_override_font_sizes/font_size = 32
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RoundTimer" type="Timer" parent="HUD/HBoxContainer/HudTime"]
+
+[node name="HudCorrect" type="TextureRect" parent="HUD/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("6_1bwwf")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="HUD/HBoxContainer/HudCorrect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 97.0
+offset_top = 16.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_fonts/font = ExtResource("5_ki4xb")
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HudWrong" type="TextureRect" parent="HUD/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("7_igojf")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="HUD/HBoxContainer/HudWrong"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 97.0
+offset_top = 16.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_fonts/font = ExtResource("5_ki4xb")
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="HUD/HBoxContainer/HudTime/RoundTimer" to="." method="_on_round_timer_timeout"]

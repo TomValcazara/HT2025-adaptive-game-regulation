@@ -1,0 +1,135 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdk4y13qrmoba"]
+
+[ext_resource type="Script" uid="uid://dl8vcg8r42f2e" path="res://Artefacts/live_debug_data_window.gd" id="1_ql4v4"]
+[ext_resource type="FontFile" uid="uid://4560b4e7q4th" path="res://Assets/Fonts/Manrope-ExtraBold.ttf" id="2_aav5v"]
+[ext_resource type="FontFile" uid="uid://c7y6i6awjx18a" path="res://Assets/Fonts/Manrope-Regular.ttf" id="3_7vbtu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6f23"]
+bg_color = Color(0, 0, 0, 0.705882)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="LiveDebugDataWindow" type="CanvasLayer"]
+script = ExtResource("1_ql4v4")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 82.0
+offset_top = 176.0
+offset_right = 915.0
+offset_bottom = 530.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6f23")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 43.0
+offset_right = 210.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_aav5v")
+theme_override_font_sizes/font_size = 32
+text = "LIVE READING DATA"
+
+[node name="LabelEmotiBit" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 119.0
+offset_right = 463.0
+offset_bottom = 375.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("3_7vbtu")
+theme_override_font_sizes/normal_font_size = 18
+text = "- - -"
+
+[node name="LabelNoiseSensor" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 492.0
+offset_top = 119.0
+offset_right = 795.0
+offset_bottom = 375.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("3_7vbtu")
+theme_override_font_sizes/normal_font_size = 18
+text = "- - -"
+
+[node name="Panel2" type="Panel" parent="."]
+offset_left = 990.0
+offset_top = 176.0
+offset_right = 1823.0
+offset_bottom = 530.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6f23")
+
+[node name="Label" type="Label" parent="Panel2"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 43.0
+offset_right = 288.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_aav5v")
+theme_override_font_sizes/font_size = 32
+text = "LAST EVALUATED READING"
+
+[node name="LastEDA" type="RichTextLabel" parent="Panel2"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 119.0
+offset_right = 341.0
+offset_bottom = 375.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("3_7vbtu")
+theme_override_font_sizes/normal_font_size = 18
+text = "- - -"
+
+[node name="LastHR" type="RichTextLabel" parent="Panel2"]
+layout_mode = 0
+offset_left = 474.0
+offset_top = 119.0
+offset_right = 756.0
+offset_bottom = 375.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("3_7vbtu")
+theme_override_font_sizes/normal_font_size = 18
+text = "- - -"
+
+[node name="Panel3" type="Panel" parent="."]
+offset_left = 82.0
+offset_top = 601.0
+offset_right = 915.0
+offset_bottom = 906.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6f23")
+
+[node name="Label" type="Label" parent="Panel3"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 43.0
+offset_right = 210.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_aav5v")
+theme_override_font_sizes/font_size = 32
+text = "LAST GAME TIER LEVEL:"
+
+[node name="LabelEmotiBit" type="RichTextLabel" parent="Panel3"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 119.0
+offset_right = 463.0
+offset_bottom = 283.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("3_7vbtu")
+theme_override_font_sizes/normal_font_size = 18
+text = "- - -"
+
+[node name="LabelNoiseSensor" type="RichTextLabel" parent="Panel3"]
+layout_mode = 0
+offset_left = 492.0
+offset_top = 119.0
+offset_right = 795.0
+offset_bottom = 274.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("3_7vbtu")
+theme_override_font_sizes/normal_font_size = 18
+text = "- - -"

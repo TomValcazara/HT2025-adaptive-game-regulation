@@ -7,6 +7,10 @@ extends Node2D
 var pi_url: String = "http://192.168.2.2:8000/noise" # CHANGE IP IF NEEDED
 var poll_interval := 1.0  # seconds
 
+var noise_history := []
+
+var RoomStatus := "analysing"
+
 # ============================================================
 # STATE
 # ============================================================
@@ -91,8 +95,29 @@ func _on_request_completed(
 
 	# Update state (keep previous value if key missing)
 	noise_detection = int(data.get("noiseDetection", noise_detection))
-
+	
+	#Saves History of Noise
+	if noise_detection == 0 or noise_detection == 1:
+		noise_history.push_front(noise_detection)
+		noise_history.resize(10)
+	
+	#Checks If room is Noise
+	var _count_not_null = 0
+	var _count_noise_detected = 0
+	for _noise in noise_history:
+		if _noise != null:
+			_count_not_null += 1
+		if _noise == 1:
+			_count_noise_detected += 1
+	if _count_not_null == 10: #has at least 10 readings of the room noise
+		if _count_noise_detected >= 3:
+			RoomStatus = "loud"
+		else:
+			RoomStatus = "quiet"
+	else:
+		RoomStatus = "analysing"
+	
+	
+			
 	# Debug (optional)
-	#print("Noise detection:", noise_detection)
-	if get_tree().current_scene.name == "MainScene":
-		get_tree().current_scene.get_node("LabelNoiseSensor").text = "Noise detection: "+str(noise_detection)
+	LiveDebugDataWindow.get_node("Panel/LabelNoiseSensor").text = "Noise detection: "+str(noise_detection)

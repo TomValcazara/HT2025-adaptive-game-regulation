@@ -22,6 +22,11 @@ var _time_since_last_read := 0.0
 # Last successfully read data
 var emotibit_data: Dictionary = {}
 
+var eda_history := []
+var hr_history := []
+var live_average_eda
+var live_average_hr
+
 # ==============================
 # GODOT LIFECYCLE
 # ==============================
@@ -68,39 +73,72 @@ func read_emotibit_json() -> void:
 
 	# Extract parsed data
 	emotibit_data = json.get_data()
-
-	# Optional: debug output
-	debug_print_data()
-
+	
+	#Creates a global copy of the last 10 entries
+	save_data_history()
+	
+	
 # ==============================
 # DATA ACCESS / DEBUG
 # ==============================
 
-func debug_print_data() -> void:
-	# Safely extract fields with defaults
+func save_data_history() -> void:
+	
+	# Safely extract fields with defaults (updated for HR, no PPG)
 	var timestamp = emotibit_data.get("timestamp", null)
 	var eda = emotibit_data.get("eda_mean", null)
-	var ppg = emotibit_data.get("ppg_mean", {})
+	var hr = emotibit_data.get("hr_bpm_mean", null)
 	var quality = emotibit_data.get("signal_quality", {})
+
+	var _data_to_print := ""
+	_data_to_print += "\n--- EMOTIBIT ---"
+	_data_to_print += "\nTimestamp: " + str(timestamp)
+	_data_to_print += "\nEDA mean: " + str(eda)
+	_data_to_print += "\nHR (BPM): " + str(hr)
+	_data_to_print += "\nSignal quality: " + str(quality)
+	LiveDebugDataWindow.get_node("Panel/LabelEmotiBit").text = _data_to_print
 	
-	#print("--- EmotiBit Update ---")
-	#print("Timestamp:", timestamp)
-	#print("EDA mean:", eda)
-	#print("PPG IR:", ppg.get("IR", null))
-	#print("PPG RED:", ppg.get("RED", null))
-	#print("PPG GRN:", ppg.get("GRN", null))
-	#print("Signal quality:", quality)
+	#Data to save / History of last 10 entries
+	if quality["eda"] == null: #Safe to store
+		if eda != null:
+			eda_history.push_front(eda)
+			eda_history.resize(10)
+	if quality["hr"] == null: #Safe to store
+		if hr != null:
+			hr_history.push_front(hr)
+			hr_history.resize(10)
+		
+func get_average_live_eda() -> float:
 	
-	var _data_to_print = ""
-	_data_to_print += "\n--- EmotiBit Update ---"
-	_data_to_print += "\nTimestamp: "+str(timestamp)
-	_data_to_print += "\nEDA mean: "+str(eda)
-	_data_to_print += "\nPPG IR: "+str(ppg.get("IR", null))
-	_data_to_print += "\nPPG RED: "+str(ppg.get("RED", null))
-	_data_to_print += "\nPPG GRN: "+str(ppg.get("GRN", null))
-	_data_to_print += "\nSignal quality: "+str(quality)
-	#print(_data_to_print)
+	var _average_eda = 0
+	var _count = 0
 	
-	if get_tree().current_scene.name == "MainScene":
-		get_tree().current_scene.get_node("LabelEmotiBit").text = _data_to_print
-	#$MainScene/RichTextLabel.text = _data_to_print
+	for _eda in eda_history:
+		if _eda != null:
+			_average_eda = _average_eda + _eda
+	if _count > 0:
+		_average_eda = _average_eda / _count
+	LiveDebugDataWindow.get_node("Panel2/LastEDA").text = "Average EDA: "+str(_average_eda)
+	
+	return _average_eda
+	
+func get_average_live_hr() -> float:
+	
+	var _average_hr = 0
+	var _count = 0
+	
+	for _hr in hr_history:
+		if _hr != null:
+			_average_hr = _average_hr + _hr
+			_count += 1
+	if _count > 0:
+		_average_hr = _average_hr / _count
+	LiveDebugDataWindow.get_node("Panel2/LastHR").text = "Average HR: "+str(_average_hr)
+	
+	return _average_hr
+	
+	
+#var eda_history := []
+#var hr_history := []
+#var live_average_eda
+#var live_average_hr

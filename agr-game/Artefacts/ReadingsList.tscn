@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://3lfnt5dk7unk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbjei"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.28485, 0.28485, 0.28485, 1)
+
+[node name="HBoxLabels" type="HBoxContainer"]
+
+[node name="LabelCreatedAt" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_kbjei")
+text = "- - -"
+
+[node name="LabelEDAReading" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_kbjei")
+text = "- - -"
+
+[node name="LabelClassification" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_kbjei")
+text = "- - -"

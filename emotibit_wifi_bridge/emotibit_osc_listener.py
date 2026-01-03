@@ -3,15 +3,16 @@ import json
 from collections import deque
 from pythonosc import dispatcher
 from pythonosc import osc_server
+import threading
 
 # ==============================
 # CONFIGURATION
 # ==============================
 
-IP = "0.0.0.0"           # Listen on all network interfaces
-PORT = 12345             # Same port used by EmotiBit OSC
-OUTPUT_HZ = 1.0          # How often we output data (1 Hz = once per second)
-WINDOW_SEC = 1.0          # How much data we buffer (1 second)
+IP = "0.0.0.0"            # Listen on all network interfaces
+PORT = 12345              # Same port used by EmotiBit OSC
+OUTPUT_HZ = 1.0           # How often we output data (1 Hz = once per second)
+WINDOW_SEC = 1.0           # How much data we buffer (1 second)
 OUTPUT_FILE = "exported_data/emotibit_state.json"  # JSON file written for Godot
 
 # ==============================
@@ -20,13 +21,11 @@ OUTPUT_FILE = "exported_data/emotibit_state.json"  # JSON file written for Godot
 
 # Each buffer stores tuples: (timestamp, value)
 eda_buf = deque()
-ppg_ir_buf = deque()
-ppg_red_buf = deque()
-ppg_grn_buf = deque()
+hr_buf = deque()          # REAL heart rate (BPM), sent by EmotiBit
 
-# Signal quality flags (may remain None if not sent)
+# Signal quality flags
 qual_eda = None
-qual_ppg = None
+qual_hr = None
 
 # Track last time we wrote JSON
 last_emit = time.time()
@@ -68,39 +67,27 @@ def handle_eda(address, *args):
     for v in args:
         eda_buf.append((t, float(v)))
 
-def handle_ppg(address, *args):
+def handle_hr(address, *args):
     """
-    Handle incoming PPG OSC messages.
-    Channel is encoded in the OSC address.
+    Handle incoming Heart Rate (BPM) OSC messages.
+    This is already computed by EmotiBit (NOT raw PPG).
     """
     t = now()
-    channel = address.split(":")[-1]
-
-    # Choose the correct buffer based on channel
-    if channel == "IR":
-        target = ppg_ir_buf
-    elif channel == "RED":
-        target = ppg_red_buf
-    elif channel == "GRN":
-        target = ppg_grn_buf
-    else:
-        return  # Ignore unknown channels
-
     for v in args:
-        target.append((t, float(v)))
+        hr_buf.append((t, float(v)))
 
 def handle_quality(address, *args):
     """
     Handle signal quality messages.
     These may arrive rarely or not at all.
     """
-    global qual_eda, qual_ppg
+    global qual_eda, qual_hr
 
     if "EDA:QUAL" in address and args:
         qual_eda = int(args[0])
 
-    if "PPG:QUAL" in address and args:
-        qual_ppg = int(args[0])
+    if "HR:QUAL" in address and args:
+        qual_hr = int(args[0])
 
 # ==============================
 # OSC DISPATCHER SETUP
@@ -110,16 +97,16 @@ disp = dispatcher.Dispatcher()
 
 # Map OSC addresses to handlers
 disp.map("/EmotiBit/*/EDA", handle_eda)
-disp.map("/EmotiBit/*/PPG:*", handle_ppg)
+disp.map("/EmotiBit/*/HR", handle_hr)
 disp.map("/EmotiBit/*/EDA:QUAL", handle_quality)
-disp.map("/EmotiBit/*/PPG:QUAL", handle_quality)
+disp.map("/EmotiBit/*/HR:QUAL", handle_quality)
 
 # ==============================
 # OSC SERVER
 # ==============================
 
 server = osc_server.ThreadingOSCUDPServer((IP, PORT), disp)
-print("Listening for EmotiBit OSC data...")
+print("Listening for EmotiBit OSC data (EDA + HR)...")
 
 # ==============================
 # OUTPUT LOOP
@@ -137,9 +124,7 @@ def emit_loop():
 
         # Remove old samples
         prune(eda_buf)
-        prune(ppg_ir_buf)
-        prune(ppg_red_buf)
-        prune(ppg_grn_buf)
+        prune(hr_buf)
 
         # Check if it's time to output
         if now() - last_emit >= 1.0 / OUTPUT_HZ:
@@ -148,16 +133,12 @@ def emit_loop():
 
                 # Aggregated physiological data
                 "eda_mean": mean(eda_buf),
-                "ppg_mean": {
-                    "IR": mean(ppg_ir_buf),
-                    "RED": mean(ppg_red_buf),
-                    "GRN": mean(ppg_grn_buf),
-                },
+                "hr_bpm_mean": mean(hr_buf),
 
                 # Signal quality (may be null)
                 "signal_quality": {
                     "eda": qual_eda,
-                    "ppg": qual_ppg,
+                    "hr": qual_hr,
                 }
             }
 
@@ -173,8 +154,6 @@ def emit_loop():
 # ==============================
 # START EVERYTHING
 # ==============================
-
-import threading
 
 # Run emit loop in background thread
 threading.Thread(target=emit_loop, daemon=True).start()

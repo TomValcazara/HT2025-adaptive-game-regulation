@@ -1,0 +1,101 @@
+[gd_scene load_steps=12 format=3 uid="uid://dylpmovmjoper"]
+
+[ext_resource type="Script" uid="uid://bw771aach2sd6" path="res://Scenes/game_play_tier_evaluation.gd" id="1_nikvn"]
+[ext_resource type="PackedScene" uid="uid://6ldjf7sabaes" path="res://Artefacts/background_animation.tscn" id="2_ugtlh"]
+[ext_resource type="Texture2D" uid="uid://bk2ky8u2g1hck" path="res://Assets/Images/Logo.png" id="3_6w3lm"]
+[ext_resource type="FontFile" uid="uid://4560b4e7q4th" path="res://Assets/Fonts/Manrope-ExtraBold.ttf" id="8_65qho"]
+[ext_resource type="FontFile" uid="uid://id8tb8prkncw" path="res://Assets/Fonts/Manrope-Light.ttf" id="11_libtc"]
+[ext_resource type="Texture2D" uid="uid://bne4otkmc5xv" path="res://Assets/Images/MessageBox.png" id="13_04fsv"]
+[ext_resource type="Texture2D" uid="uid://b41si4ah6ys2x" path="res://Assets/Images/Timer.png" id="14_0kpn6"]
+[ext_resource type="FontFile" uid="uid://jmav1taq4n1u" path="res://Assets/Fonts/Manrope-ExtraLight.ttf" id="15_bbbff"]
+[ext_resource type="Texture2D" uid="uid://cerpegkdqrakh" path="res://Assets/Images/ButtonLargeDisabled.png" id="15_dhqbe"]
+[ext_resource type="Texture2D" uid="uid://cdobi8n4q7kn2" path="res://Assets/Images/ButtonLarge.png" id="19_bbbff"]
+[ext_resource type="Texture2D" uid="uid://b6sqnuojbian1" path="res://Assets/Images/ButtonLargeHover.png" id="20_dhqbe"]
+
+[node name="GamePlayTierEvaluation" type="Node2D"]
+script = ExtResource("1_nikvn")
+
+[node name="BackgroundAnimation" parent="." instance=ExtResource("2_ugtlh")]
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(156, 118)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_6w3lm")
+
+[node name="LabelTitle" type="Label" parent="."]
+offset_left = 299.0
+offset_top = 128.0
+offset_right = 537.0
+offset_bottom = 169.0
+theme_override_colors/font_color = Color(0.147672, 0.147672, 0.147672, 1)
+theme_override_fonts/font = ExtResource("8_65qho")
+theme_override_font_sizes/font_size = 30
+text = "LEVEL GENERATOR "
+
+[node name="MessageBox" type="Sprite2D" parent="."]
+position = Vector2(704, 586)
+texture = ExtResource("13_04fsv")
+
+[node name="WarningMessage" type="RichTextLabel" parent="MessageBox"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -260.0
+offset_top = -241.0
+offset_right = -350.0
+offset_bottom = -369.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_fonts/normal_font = ExtResource("8_65qho")
+theme_override_font_sizes/normal_font_size = 42
+text = "- - -"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Sprite2D" parent="."]
+position = Vector2(1346, 533)
+texture = ExtResource("14_0kpn6")
+
+[node name="Label" type="Label" parent="Timer"]
+offset_left = -139.0
+offset_top = 35.0
+offset_right = 140.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_fonts/font = ExtResource("15_bbbff")
+theme_override_font_sizes/font_size = 32
+text = "- - -"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ButtonStartPlaying" type="TextureButton" parent="."]
+offset_left = 1218.0
+offset_top = 740.0
+offset_right = 1475.0
+offset_bottom = 801.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("19_bbbff")
+texture_hover = ExtResource("20_dhqbe")
+texture_disabled = ExtResource("15_dhqbe")
+
+[node name="Label" type="Label" parent="ButtonStartPlaying"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_fonts/font = ExtResource("11_libtc")
+theme_override_font_sizes/font_size = 22
+text = "START GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimerofReading" type="Timer" parent="ButtonStartPlaying"]
+
+[connection signal="button_up" from="ButtonStartPlaying" to="." method="_on_button_start_playing_button_up"]
+[connection signal="timeout" from="ButtonStartPlaying/TimerofReading" to="." method="_on_timerof_reading_timeout"]

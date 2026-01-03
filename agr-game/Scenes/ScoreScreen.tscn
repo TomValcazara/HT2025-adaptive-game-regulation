@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=3 uid="uid://pxpyrhd0gdxr"]
+
+[ext_resource type="Script" uid="uid://cixwqrisvr4xu" path="res://Scenes/score_screen.gd" id="1_mfyti"]
+[ext_resource type="PackedScene" uid="uid://6ldjf7sabaes" path="res://Artefacts/background_animation.tscn" id="2_tea4j"]
+[ext_resource type="Texture2D" uid="uid://bk2ky8u2g1hck" path="res://Assets/Images/Logo.png" id="4_pseuf"]
+[ext_resource type="Texture2D" uid="uid://bne4otkmc5xv" path="res://Assets/Images/MessageBox.png" id="5_6saps"]
+[ext_resource type="Texture2D" uid="uid://cdobi8n4q7kn2" path="res://Assets/Images/ButtonLarge.png" id="6_41ajl"]
+[ext_resource type="Texture2D" uid="uid://b6sqnuojbian1" path="res://Assets/Images/ButtonLargeHover.png" id="7_kj88f"]
+[ext_resource type="FontFile" uid="uid://4560b4e7q4th" path="res://Assets/Fonts/Manrope-ExtraBold.ttf" id="8_65qho"]
+[ext_resource type="Texture2D" uid="uid://cerpegkdqrakh" path="res://Assets/Images/ButtonLargeDisabled.png" id="8_lxyai"]
+[ext_resource type="FontFile" uid="uid://id8tb8prkncw" path="res://Assets/Fonts/Manrope-Light.ttf" id="9_pvu22"]
+
+[node name="ScoreScreen" type="Node2D"]
+script = ExtResource("1_mfyti")
+
+[node name="BackgroundAnimation" parent="." instance=ExtResource("2_tea4j")]
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(156, 118)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_pseuf")
+
+[node name="LabelTitle" type="Label" parent="."]
+visible = false
+offset_left = 299.0
+offset_top = 128.0
+offset_right = 537.0
+offset_bottom = 169.0
+theme_override_colors/font_color = Color(0.147672, 0.147672, 0.147672, 1)
+theme_override_fonts/font = ExtResource("8_65qho")
+theme_override_font_sizes/font_size = 30
+text = "YOUR SCORE "
+
+[node name="MessageBox" type="Sprite2D" parent="."]
+position = Vector2(966, 477)
+texture = ExtResource("5_6saps")
+
+[node name="WarningMessage" type="RichTextLabel" parent="MessageBox"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -260.0
+offset_top = -241.0
+offset_right = -350.0
+offset_bottom = -369.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_fonts/normal_font = ExtResource("8_65qho")
+theme_override_font_sizes/normal_font_size = 42
+bbcode_enabled = true
+text = "- - -"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_top = 812.0
+offset_right = 1920.0
+offset_bottom = 873.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="ButtonMenu" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("6_41ajl")
+texture_hover = ExtResource("7_kj88f")
+texture_disabled = ExtResource("8_lxyai")
+
+[node name="Label" type="Label" parent="HBoxContainer/ButtonMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_fonts/font = ExtResource("9_pvu22")
+theme_override_font_sizes/font_size = 22
+text = "MENU"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonPlayAgain" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("6_41ajl")
+texture_hover = ExtResource("7_kj88f")
+texture_disabled = ExtResource("8_lxyai")
+
+[node name="Label" type="Label" parent="HBoxContainer/ButtonPlayAgain"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_fonts/font = ExtResource("9_pvu22")
+theme_override_font_sizes/font_size = 22
+text = "PLAY AGAIN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_up" from="HBoxContainer/ButtonMenu" to="." method="_on_button_menu_button_up"]
+[connection signal="button_up" from="HBoxContainer/ButtonPlayAgain" to="." method="_on_button_play_again_button_up"]

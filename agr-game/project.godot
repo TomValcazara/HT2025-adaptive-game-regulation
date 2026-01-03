@@ -10,12 +10,26 @@ config_version=5
 
 [application]
 
-config/name="AGR Game"
-run/main_scene="uid://7f5yd0hq0nmn"
+config/name="Bubble Trouble"
+run/main_scene="uid://cqvil45w4mhkd"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
+FadeTransition="*res://GlobalScripts/FadeTransition.tscn"
+CursorManager="*res://GlobalScripts/CursorManager.gd"
 EmotiBitBridge="*res://GlobalScripts/EmotiBitBridge.gd"
 NoiseSensorBridge="*res://GlobalScripts/NoiseSensorBridge.tscn"
+GlobalManager="*res://GlobalScripts/GlobalManager.gd"
+LiveDebugDataWindow="*res://Artefacts/live_debug_data_window.tscn"
+AudioManager="*res://Scenes/AudioManager.tscn"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.94902, 0.94902, 0.968627, 1)

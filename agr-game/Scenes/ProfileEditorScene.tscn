@@ -1,0 +1,374 @@
+[gd_scene load_steps=19 format=3 uid="uid://d0soib8wuxy75"]
+
+[ext_resource type="Script" uid="uid://bkgxqk1qru00" path="res://Scenes/profile_editor_scene.gd" id="1_b63d0"]
+[ext_resource type="PackedScene" uid="uid://6ldjf7sabaes" path="res://Artefacts/background_animation.tscn" id="2_ugtlh"]
+[ext_resource type="Texture2D" uid="uid://bk2ky8u2g1hck" path="res://Assets/Images/Logo.png" id="4_pseuf"]
+[ext_resource type="FontFile" uid="uid://4560b4e7q4th" path="res://Assets/Fonts/Manrope-ExtraBold.ttf" id="8_65qho"]
+[ext_resource type="Texture2D" uid="uid://d0rpx0ca3vp4c" path="res://Assets/Images/ProfileNameBox.png" id="10_ao6cs"]
+[ext_resource type="FontFile" uid="uid://id8tb8prkncw" path="res://Assets/Fonts/Manrope-Light.ttf" id="11_libtc"]
+[ext_resource type="Texture2D" uid="uid://crn0fdeynkva7" path="res://Assets/Images/ProfileNameConfirm.png" id="12_hdc5v"]
+[ext_resource type="Texture2D" uid="uid://bne4otkmc5xv" path="res://Assets/Images/MessageBox.png" id="13_04fsv"]
+[ext_resource type="Texture2D" uid="uid://b41si4ah6ys2x" path="res://Assets/Images/Timer.png" id="14_0kpn6"]
+[ext_resource type="FontFile" uid="uid://jmav1taq4n1u" path="res://Assets/Fonts/Manrope-ExtraLight.ttf" id="15_bbbff"]
+[ext_resource type="Texture2D" uid="uid://cerpegkdqrakh" path="res://Assets/Images/ButtonLargeDisabled.png" id="15_dhqbe"]
+[ext_resource type="Texture2D" uid="uid://bkqbbhg1kfjk4" path="res://Assets/Images/ButtonSmall.png" id="16_dhqbe"]
+[ext_resource type="Texture2D" uid="uid://bah8i6gp061lx" path="res://Assets/Images/ButtonSmallHover.png" id="17_th3n0"]
+[ext_resource type="Texture2D" uid="uid://dkn8cmjewgung" path="res://Assets/Images/ButtonSmallDisabled.png" id="18_cymyl"]
+[ext_resource type="Texture2D" uid="uid://cdobi8n4q7kn2" path="res://Assets/Images/ButtonLarge.png" id="19_bbbff"]
+[ext_resource type="Texture2D" uid="uid://b6sqnuojbian1" path="res://Assets/Images/ButtonLargeHover.png" id="20_dhqbe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vio48"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbjei"]
+bg_color = Color(0.843184, 0.843184, 0.843184, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.28485, 0.28485, 0.28485, 1)
+
+[node name="ProfileEditorScene" type="Node2D"]
+script = ExtResource("1_b63d0")
+
+[node name="BackgroundAnimation" parent="." instance=ExtResource("2_ugtlh")]
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(156, 118)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_pseuf")
+
+[node name="LabelTitle" type="Label" parent="."]
+offset_left = 299.0
+offset_top = 128.0
+offset_right = 537.0
+offset_bottom = 169.0
+theme_override_colors/font_color = Color(0.147672, 0.147672, 0.147672, 1)
+theme_override_fonts/font = ExtResource("8_65qho")
+theme_override_font_sizes/font_size = 30
+text = "- - -"
+
+[node name="CreateProfileWrapper" type="Node2D" parent="."]
+
+[node name="ProfileNameBox" type="Sprite2D" parent="CreateProfileWrapper"]
+position = Vector2(968, 566)
+texture = ExtResource("10_ao6cs")
+
+[node name="LineEdit" type="LineEdit" parent="CreateProfileWrapper/ProfileNameBox"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -445.0
+offset_top = -42.0
+offset_right = -668.0
+offset_bottom = -118.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_placeholder_color = Color(0.43134, 0.43134, 0.43134, 1)
+theme_override_colors/font_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_fonts/font = ExtResource("11_libtc")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_vio48")
+placeholder_text = "YOUR NAME"
+max_length = 20
+
+[node name="ButtonCreateProfile" type="TextureButton" parent="CreateProfileWrapper/ProfileNameBox"]
+offset_left = 384.0
+offset_top = -43.0
+offset_right = 472.0
+offset_bottom = 44.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("12_hdc5v")
+texture_pressed = ExtResource("12_hdc5v")
+texture_hover = ExtResource("12_hdc5v")
+texture_disabled = ExtResource("12_hdc5v")
+texture_focused = ExtResource("12_hdc5v")
+
+[node name="EditProfileWrapper" type="Node2D" parent="."]
+visible = false
+
+[node name="LabelCreatedAt" type="Label" parent="EditProfileWrapper"]
+offset_left = 71.0
+offset_top = 258.0
+offset_right = 227.0
+offset_bottom = 281.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "EDITINF PROFILEEEE"
+
+[node name="LabelReadings" type="Label" parent="EditProfileWrapper"]
+offset_left = 71.0
+offset_top = 332.0
+offset_right = 227.0
+offset_bottom = 355.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "READINGS:"
+
+[node name="VBoxLabels" type="VBoxContainer" parent="EditProfileWrapper"]
+offset_left = 72.0
+offset_top = 378.0
+offset_right = 1840.0
+offset_bottom = 986.0
+
+[node name="HBoxLabels" type="HBoxContainer" parent="EditProfileWrapper/VBoxLabels"]
+layout_mode = 2
+
+[node name="LabelCreatedAt" type="Label" parent="EditProfileWrapper/VBoxLabels/HBoxLabels"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_kbjei")
+text = "CREATED AT"
+
+[node name="LabelEDAReading" type="Label" parent="EditProfileWrapper/VBoxLabels/HBoxLabels"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_kbjei")
+text = "EDA READING"
+
+[node name="LabelClassification" type="Label" parent="EditProfileWrapper/VBoxLabels/HBoxLabels"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_kbjei")
+text = "CLASSIFICATION"
+
+[node name="ReadingsList" type="ScrollContainer" parent="EditProfileWrapper"]
+offset_left = 75.0
+offset_top = 420.0
+offset_right = 1839.0
+offset_bottom = 958.0
+
+[node name="VBoxWrapper" type="VBoxContainer" parent="EditProfileWrapper/ReadingsList"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Buttons" type="HBoxContainer" parent="EditProfileWrapper"]
+offset_left = 1295.0
+offset_top = 236.0
+offset_right = 1829.0
+offset_bottom = 297.0
+theme_override_constants/separation = 20
+
+[node name="ButtonNewEntry" type="TextureButton" parent="EditProfileWrapper/Buttons"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("19_bbbff")
+texture_hover = ExtResource("20_dhqbe")
+texture_disabled = ExtResource("15_dhqbe")
+
+[node name="Label" type="Label" parent="EditProfileWrapper/Buttons/ButtonNewEntry"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_fonts/font = ExtResource("11_libtc")
+theme_override_font_sizes/font_size = 22
+text = "ADD NEW READING"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimerofReading" type="Timer" parent="EditProfileWrapper/Buttons/ButtonNewEntry"]
+
+[node name="ButtonFinishEditing" type="TextureButton" parent="EditProfileWrapper/Buttons"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("19_bbbff")
+texture_hover = ExtResource("20_dhqbe")
+texture_disabled = ExtResource("15_dhqbe")
+
+[node name="Label" type="Label" parent="EditProfileWrapper/Buttons/ButtonFinishEditing"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_fonts/font = ExtResource("11_libtc")
+theme_override_font_sizes/font_size = 22
+text = "FINISH AND SAVE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimerofReading" type="Timer" parent="EditProfileWrapper/Buttons/ButtonFinishEditing"]
+
+[node name="RegisteringReadingWrapper" type="Node2D" parent="."]
+visible = false
+
+[node name="MessageBox" type="Sprite2D" parent="RegisteringReadingWrapper"]
+position = Vector2(704, 588)
+texture = ExtResource("13_04fsv")
+
+[node name="WarningMessage" type="RichTextLabel" parent="RegisteringReadingWrapper/MessageBox"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -260.0
+offset_top = -241.0
+offset_right = -350.0
+offset_bottom = -369.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_fonts/normal_font = ExtResource("8_65qho")
+theme_override_font_sizes/normal_font_size = 42
+text = "Make sure your EmotiBit is securely fitted on your wrist.
+
+When you’re ready, click on START and remain still until the timer finishes."
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Sprite2D" parent="RegisteringReadingWrapper"]
+position = Vector2(1346, 535)
+texture = ExtResource("14_0kpn6")
+
+[node name="Label" type="Label" parent="RegisteringReadingWrapper/Timer"]
+offset_left = -139.0
+offset_top = 35.0
+offset_right = 140.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_fonts/font = ExtResource("15_bbbff")
+theme_override_font_sizes/font_size = 32
+text = "- - -"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ButtonStartReading" type="TextureButton" parent="RegisteringReadingWrapper"]
+offset_left = 1280.0
+offset_top = 742.0
+offset_right = 1405.0
+offset_bottom = 803.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("16_dhqbe")
+texture_hover = ExtResource("17_th3n0")
+texture_disabled = ExtResource("18_cymyl")
+
+[node name="Label" type="Label" parent="RegisteringReadingWrapper/ButtonStartReading"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_fonts/font = ExtResource("11_libtc")
+theme_override_font_sizes/font_size = 22
+text = "START"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimerofReading" type="Timer" parent="RegisteringReadingWrapper/ButtonStartReading"]
+
+[node name="SaveReadingWrapper" type="Node2D" parent="."]
+visible = false
+
+[node name="MessageBox" type="Sprite2D" parent="SaveReadingWrapper"]
+position = Vector2(704, 588)
+texture = ExtResource("13_04fsv")
+
+[node name="WarningMessage" type="RichTextLabel" parent="SaveReadingWrapper/MessageBox"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -260.0
+offset_top = -241.0
+offset_right = -350.0
+offset_bottom = -369.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_fonts/normal_font = ExtResource("8_65qho")
+theme_override_font_sizes/normal_font_size = 42
+text = "How did you feel during this measurement?"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SaveReadingWrapper"]
+offset_left = 1215.0
+offset_top = 470.0
+offset_right = 1472.0
+offset_bottom = 804.0
+theme_override_constants/separation = 30
+
+[node name="ButtonRelaxed" type="TextureButton" parent="SaveReadingWrapper/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("19_bbbff")
+texture_hover = ExtResource("20_dhqbe")
+texture_disabled = ExtResource("18_cymyl")
+
+[node name="Label" type="Label" parent="SaveReadingWrapper/VBoxContainer/ButtonRelaxed"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_fonts/font = ExtResource("11_libtc")
+theme_override_font_sizes/font_size = 22
+text = "RELAXED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonNeutral" type="TextureButton" parent="SaveReadingWrapper/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("19_bbbff")
+texture_hover = ExtResource("20_dhqbe")
+texture_disabled = ExtResource("18_cymyl")
+
+[node name="Label" type="Label" parent="SaveReadingWrapper/VBoxContainer/ButtonNeutral"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_fonts/font = ExtResource("11_libtc")
+theme_override_font_sizes/font_size = 22
+text = "NEUTRAL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonTense" type="TextureButton" parent="SaveReadingWrapper/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("19_bbbff")
+texture_hover = ExtResource("20_dhqbe")
+texture_disabled = ExtResource("18_cymyl")
+
+[node name="Label" type="Label" parent="SaveReadingWrapper/VBoxContainer/ButtonTense"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.14902, 0.14902, 0.14902, 1)
+theme_override_fonts/font = ExtResource("11_libtc")
+theme_override_font_sizes/font_size = 22
+text = "TENSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="text_changed" from="CreateProfileWrapper/ProfileNameBox/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="button_up" from="CreateProfileWrapper/ProfileNameBox/ButtonCreateProfile" to="." method="_on_button_create_profile_button_up"]
+[connection signal="button_up" from="EditProfileWrapper/Buttons/ButtonNewEntry" to="." method="_on_button_new_entry_button_up"]
+[connection signal="timeout" from="EditProfileWrapper/Buttons/ButtonNewEntry/TimerofReading" to="." method="_on_timerof_reading_timeout"]
+[connection signal="button_up" from="EditProfileWrapper/Buttons/ButtonFinishEditing" to="." method="_on_button_finish_editing_button_up"]
+[connection signal="timeout" from="EditProfileWrapper/Buttons/ButtonFinishEditing/TimerofReading" to="." method="_on_timerof_reading_timeout"]
+[connection signal="button_up" from="RegisteringReadingWrapper/ButtonStartReading" to="." method="_on_button_start_reading_button_up"]
+[connection signal="timeout" from="RegisteringReadingWrapper/ButtonStartReading/TimerofReading" to="." method="_on_timerof_reading_timeout"]
+[connection signal="button_up" from="SaveReadingWrapper/VBoxContainer/ButtonRelaxed" to="." method="_on_buttonsAnswer_button_up" binds= ["relaxed"]]
+[connection signal="button_up" from="SaveReadingWrapper/VBoxContainer/ButtonNeutral" to="." method="_on_buttonsAnswer_button_up" binds= ["Neutral"]]
+[connection signal="button_up" from="SaveReadingWrapper/VBoxContainer/ButtonTense" to="." method="_on_buttonsAnswer_button_up" binds= ["tense"]]
