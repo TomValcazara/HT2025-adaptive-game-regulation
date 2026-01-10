@@ -120,4 +120,5 @@ func _on_request_completed(
 	
 			
 	# Debug (optional)
+	#print("Noise detection: "+str(noise_detection))
 	LiveDebugDataWindow.get_node("Panel/LabelNoiseSensor").text = "Noise detection: "+str(noise_detection)

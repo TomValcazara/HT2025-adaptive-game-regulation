@@ -133,3 +133,32 @@ theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("3_7vbtu")
 theme_override_font_sizes/normal_font_size = 18
 text = "- - -"
+
+[node name="Panel4" type="Panel" parent="."]
+offset_left = 991.0
+offset_top = 601.0
+offset_right = 1824.0
+offset_bottom = 906.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6f23")
+
+[node name="Label" type="Label" parent="Panel4"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 43.0
+offset_right = 210.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_aav5v")
+theme_override_font_sizes/font_size = 32
+text = "CURRENT USER PROFILE:"
+
+[node name="LabelDesc" type="RichTextLabel" parent="Panel4"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 119.0
+offset_right = 780.0
+offset_bottom = 283.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("3_7vbtu")
+theme_override_font_sizes/normal_font_size = 18
+text = "- - -"

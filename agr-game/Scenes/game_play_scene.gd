@@ -128,7 +128,13 @@ func createGamePlay() -> void:
 		_levelTier = 9
 	else:
 		_levelTier = GlobalManager.GameDifficultyTier
-		
+	
+	#For Testing Only
+	if GlobalManager.CurrentProfile["name"] == "CHILL GUY":
+		_levelTier = 9
+	elif GlobalManager.CurrentProfile["name"] == "STRESSED GUY":
+		_levelTier = 1
+	
 	match _levelTier:
 		1:
 			gameplayRules = { 

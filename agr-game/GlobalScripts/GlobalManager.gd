@@ -2,7 +2,7 @@ extends Node
 
 var CurrentProfile = {}
 var GameDifficultyTier = 5
-var TestingMode = true
+var TestingMode = false
 var PlayerScore = {}
 
 func _ready() -> void:
@@ -24,6 +24,7 @@ func loadProfile(_id):
 			if current_profile.id == _id:
 				CurrentProfile = current_profile
 				CurrentProfile["id"] = int(CurrentProfile["id"]) #JSON reading was converting Int values into Floats
+				LiveDebugDataWindow.get_node("Panel4/LabelDesc").text = str(CurrentProfile)
 			file.close()
 		file_name = dir.get_next()
 	dir.list_dir_end()
@@ -139,4 +140,10 @@ func validate_eda_baselines(_average_relaxed_eda: float,_average_neutral_eda: fl
 		"tense": tense
 	}
 	
-		
+#Allows me to restart the game
+func _input(event):
+	if event is InputEventKey and event.pressed and event.keycode == KEY_R and event.ctrl_pressed:
+	#if event is InputEventKey and event.pressed and event.keycode == KEY_R:
+		FadeTransition.fade_to_scene("res://Scenes/ProfileSelectorScene.tscn")
+	
+	

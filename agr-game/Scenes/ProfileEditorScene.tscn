@@ -370,5 +370,5 @@ vertical_alignment = 1
 [connection signal="button_up" from="RegisteringReadingWrapper/ButtonStartReading" to="." method="_on_button_start_reading_button_up"]
 [connection signal="timeout" from="RegisteringReadingWrapper/ButtonStartReading/TimerofReading" to="." method="_on_timerof_reading_timeout"]
 [connection signal="button_up" from="SaveReadingWrapper/VBoxContainer/ButtonRelaxed" to="." method="_on_buttonsAnswer_button_up" binds= ["relaxed"]]
-[connection signal="button_up" from="SaveReadingWrapper/VBoxContainer/ButtonNeutral" to="." method="_on_buttonsAnswer_button_up" binds= ["Neutral"]]
+[connection signal="button_up" from="SaveReadingWrapper/VBoxContainer/ButtonNeutral" to="." method="_on_buttonsAnswer_button_up" binds= ["neutral"]]
 [connection signal="button_up" from="SaveReadingWrapper/VBoxContainer/ButtonTense" to="." method="_on_buttonsAnswer_button_up" binds= ["tense"]]

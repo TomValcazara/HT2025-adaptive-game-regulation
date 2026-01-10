@@ -116,6 +116,7 @@ func get_average_live_eda() -> float:
 	for _eda in eda_history:
 		if _eda != null:
 			_average_eda = _average_eda + _eda
+			_count += 1
 	if _count > 0:
 		_average_eda = _average_eda / _count
 	LiveDebugDataWindow.get_node("Panel2/LastEDA").text = "Average EDA: "+str(_average_eda)
